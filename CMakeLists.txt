@@ -3,7 +3,22 @@
 # accompanying file Copyright.txt for details.
 #------------------------------------------------------------------------------#
 # Define the BINARY_DIR variable
-set(BINARY_DIR ${CMAKE_BINARY_DIR})
+cmake_minimum_required(VERSION 3.22)
+
+find_package(ADIOS2 REQUIRED)
+message(STATUS "Found Adios2")
+MESSAGE(STATUS "Adios config: ${ADIOS2_CONFIG}")
+# MPI
+find_package(MPI REQUIRED COMPONENTS C CXX)
+find_package(OpenMP REQUIRED COMPONENTS C CXX)
+message(STATUS "Found OpenMP")
+find_package(MPI REQUIRED COMPONENTS C CXX)
+#spdlog
+add_subdirectory(external_libraries/spdlog)
+add_subdirectory(external_libraries/cereal)
+add_subdirectory(external_libraries/rapidjson)
+
+set(BINARY_DIR ${CMAKE_SOURCE_DIR})
 
 # Pass the BINARY_DIR as a preprocessor definition
 add_definitions(-DBINARY_DIR="${BINARY_DIR}")
