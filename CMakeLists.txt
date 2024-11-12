@@ -4,7 +4,7 @@
 #------------------------------------------------------------------------------#
 # Define the BINARY_DIR variable
 cmake_minimum_required(VERSION 3.22)
-
+project(coeus)
 find_package(ADIOS2 REQUIRED)
 message(STATUS "Found Adios2")
 MESSAGE(STATUS "Adios config: ${ADIOS2_CONFIG}")
