@@ -17,9 +17,9 @@ add_executable(adios2-gray-scott
   simulation/restart.cpp
 )
 target_link_libraries(adios2-gray-scott adios2::adios2
-        hermes_engine hermes_engine ${Hermes_LIBRARIES} MPI::MPI_C)
+         MPI::MPI_C)
 target_include_directories(adios2-gray-scott PRIVATE
-        ${Hermes_INCLUDE_DIRS}
+
         ${ADIOS2_INCLUDE_DIR}
         )
 install(TARGETS adios2-gray-scott 
@@ -27,9 +27,9 @@ install(TARGETS adios2-gray-scott
 
 add_executable(adios2-pdf-calc analysis/pdf-calc.cpp)
 target_link_libraries(adios2-pdf-calc
-        adios2::adios2 hermes_engine ${Hermes_LIBRARIES} MPI::MPI_C)
+        adios2::adios2 hermes_engine  MPI::MPI_C)
 target_include_directories(adios2-pdf-calc PRIVATE
-        ${Hermes_INCLUDE_DIRS}
+
         ${ADIOS2_INCLUDE_DIR}
         )
 install(TARGETS adios2-pdf-calc 
@@ -41,8 +41,6 @@ add_executable(adios2-hashing analysis/hashing.cpp)
 # Link libraries to the executable
 target_link_libraries(adios2-hashing
         adios2::adios2
-        hermes_engine
-        ${Hermes_LIBRARIES}
         MPI::MPI_C
         )
 
@@ -62,14 +60,11 @@ add_executable(hashing-comparison analysis/compare.cpp)
 # Link libraries to the executable
 target_link_libraries(hashing-comparison
         adios2::adios2
-        hermes_engine
-        ${Hermes_LIBRARIES}
         MPI::MPI_C
         )
 
 # Include necessary directories for compilation
 target_include_directories(hashing-comparison PRIVATE
-        ${Hermes_INCLUDE_DIRS}
         ${ADIOS2_INCLUDE_DIR}
         )
 
