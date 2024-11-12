@@ -43,7 +43,7 @@ install(TARGETS adios2-gray-scott
 
 add_executable(adios2-pdf-calc analysis/pdf-calc.cpp)
 target_link_libraries(adios2-pdf-calc
-        adios2::adios2 hermes_engine  MPI::MPI_C)
+        adios2::adios2   MPI::MPI_C)
 target_include_directories(adios2-pdf-calc PRIVATE
 
         ${ADIOS2_INCLUDE_DIR}
