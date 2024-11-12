@@ -11,14 +11,8 @@
             <parameter key="RendezvousReaderCount" value="0"/>
             <parameter key="QueueLimit" value="1"/>
             <parameter key="QueueFullPolicy" value="Discard"/>
-            <parameter key="DataTransport" value="MPI"/>
-            <!-- BP5/SST engine parameters -->
-            <parameter key="OpenTimeoutSecs" value="60.0"/>
-            <!-- BP5 engine parameters -->
-            <parameter key="NumAggregators" value="1"/>
-            <parameter key="AsyncWrite" value="false"/>
-            <!-- BP5 reader parameter -->
-            <!--parameter key="SelectSteps" value="0:n:10"/-->
+            <!-- BP4/SST engine parameters -->
+            <parameter key="OpenTimeoutSecs" value="10.0"/>
         </engine>
     </io>
 
@@ -30,36 +24,18 @@
         <engine type="BP5">
             <!-- SST engine parameters -->
             <parameter key="RendezvousReaderCount" value="1"/>
-            <parameter key="QueueLimit" value="5"/>
+            <parameter key="QueueLimit" value="1"/>
             <parameter key="QueueFullPolicy" value="Block"/>
-            <!-- BP5/SST engine parameters -->
-            <parameter key="OpenTimeoutSecs" value="60.0"/>
+            <!-- BP4/SST engine parameters -->
+            <parameter key="OpenTimeoutSecs" value="10.0"/>
         </engine>
-
-        <!-- Compress variables -->
-        <!--
-        <variable name="U">
-            <operation type="sz">
-                <parameter key="accuracy" value="0.001"/>
-            </operation>
-        </variable>
-        <variable name="V">
-            <operation type="sz">
-                <parameter key="accuracy" value="0.001"/>
-            </operation>
-        </variable>
-        -->
     </io>
 
-    <!--====================================
-           Configuration for isosurface,
-           find_blobs and render_isosurface
-        ====================================-->
-
-    <io name="IsosurfaceOutput">
+    <io name="SimulationCheckpoint">
         <engine type="BP5">
         </engine>
     </io>
+
 
     <!--================================================
            Configuration for Gray-Scott (checkpointing)
