@@ -36,6 +36,7 @@ target_link_libraries(adios2-gray-scott adios2::adios2
 target_include_directories(adios2-gray-scott PRIVATE
 
         ${ADIOS2_INCLUDE_DIR}
+        ${CMAKE_SOURCE_DIR}/external_libraries/spdlog/include
         )
 install(TARGETS adios2-gray-scott 
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -46,6 +47,7 @@ target_link_libraries(adios2-pdf-calc
 target_include_directories(adios2-pdf-calc PRIVATE
 
         ${ADIOS2_INCLUDE_DIR}
+        ${CMAKE_SOURCE_DIR}/external_libraries/spdlog/include
         )
 install(TARGETS adios2-pdf-calc 
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -61,7 +63,7 @@ target_link_libraries(adios2-hashing
 
 # Include necessary directories for compilation
 target_include_directories(adios2-hashing PRIVATE
-        ${Hermes_INCLUDE_DIRS}
+        ${CMAKE_SOURCE_DIR}/external_libraries/spdlog/include
         ${ADIOS2_INCLUDE_DIR}
         )
 
@@ -81,6 +83,7 @@ target_link_libraries(hashing-comparison
 # Include necessary directories for compilation
 target_include_directories(hashing-comparison PRIVATE
         ${ADIOS2_INCLUDE_DIR}
+        ${CMAKE_SOURCE_DIR}/external_libraries/spdlog/include
         )
 
 # Install the executable
