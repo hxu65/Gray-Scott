@@ -54,7 +54,8 @@ hashing.bp is the file for derived variable with hashing operation
 
 
 
-# ADIOS2-Examples gray-scott
+# The original README for ADIOS2 gray-scott 
+## For reference only
 
 This is a 3D 7-point stencil code to simulate the following [Gray-Scott
 reaction diffusion model](https://doi.org/10.1126/science.261.5118.189):
