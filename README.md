@@ -1,3 +1,59 @@
+
+
+
+
+
+
+
+
+
+# Coeus recup evaluation:
+# How to build
+Ensure adios2, openmpi installed
+```
+git clone https://github.com/hxu65/gray-scott.git
+cd gray-scott
+mkdir build
+cmake ../
+make -j8
+cp gray-scott/simulation/adios2.xml ./
+```
+# How to run
+
+### Running the Gray-Scott Simulation with ADIOS2 Without Derived Variables
+The configuration file, setting-files.json, includes several key parameters:<br>
+"L": Specifies the size for each I/O operation, typically set to 128, 64, or 32.<br>
+"steps": Defines the number of simulation steps.
+```
+cd gray-scott
+mpirun -n 4 build/adios2-gray-scott simulation/settings-files.json 0
+```
+Setting the final value to 0 ensures that derived variables will not be used.
+
+### Run the gray scott with adios2 and with derived variables
+```
+cd gray-scott
+mpirun -n 4 build/adios2-gray-scott simulation/settings-files.json 1
+```
+Setting the final value to 1 ensures that derived variables will be used.
+
+
+
+### Hashing a bp5 file and generate a same bp5 file with derived variables(hashing)
+```
+cd gray-scott
+mpirun -n 4 /build/adios2-hashing gs.bp hashing.bp
+```
+gs.bp is the original file without hashing variables. <br>
+hashing.bp is the file for derived variable with hashing operation
+
+
+
+
+
+
+
+
 # ADIOS2-Examples gray-scott
 
 This is a 3D 7-point stencil code to simulate the following [Gray-Scott
