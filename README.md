@@ -5,8 +5,6 @@
 
 
 
-
-
 # Coeus recup evaluation:
 # How to build
 Ensure adios2, openmpi installed
@@ -42,7 +40,7 @@ Setting the final value to 1 ensures that derived variables will be used.
 ### Hashing a bp5 file and generate a same bp5 file with derived variables(hashing)
 ```
 cd gray-scott
-mpirun -n 4 /build/adios2-hashing gs.bp hashing.bp
+mpirun -n 4 build/adios2-hashing gs.bp hashing.bp
 ```
 gs.bp is the original file without hashing variables. <br>
 hashing.bp is the file for derived variable with hashing operation
