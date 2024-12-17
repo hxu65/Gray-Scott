@@ -12,6 +12,7 @@ Ensure adios2, openmpi installed
 git clone https://github.com/hxu65/gray-scott.git
 cd gray-scott
 mkdir build
+cd build
 cmake ../
 make -j8
 cp gray-scott/simulation/adios2.xml ./
