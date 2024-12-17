@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
         }
         // End read step (let resources about step go)
         reader.EndStep();
-        std::cout << "@@@@rank:" << rank << ", get time: " <<  clock1 << std::endl;
+
         if (!rank)
         {
             std::cout << "PDF Analysis step " << stepAnalysis
@@ -212,13 +212,7 @@ int main(int argc, char *argv[])
         writer.EndStep();
         ++stepAnalysis;
     }
-    std::cout << "rank:" << rank << ", reader_beginstep_time: " << reader_beginstep_time << std::endl;
-    std::cout << "rank:" << rank << ", reader_get_time: " << reader_get_time << std::endl;
-    std::cout << "rank:" << rank << ", reader_endstep_time: " << reader_endstep_time << std::endl;
-    std::cout << "rank:" << rank << ", writer_beginstep_time: " << writer_beginstep_time << std::endl;
-    std::cout << "rank:" << rank << ", writer_put_time : " << writer_put_time  << std::endl;
-    std::cout << "rank:" << rank << ", writer_endstep_time : " << writer_endstep_time  << std::endl;
-    std::cout << "rank:" << rank << ", step_total_time : " << step_total_time  << std::endl;
+
     // cleanup (close reader and writer)
     reader.Close();
     writer.Close();
