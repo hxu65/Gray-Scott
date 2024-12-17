@@ -23,6 +23,36 @@ cp gray-scott/simulation/adios2.xml ./
 The configuration file, setting-files.json, includes several key parameters:<br>
 "L": Specifies the size for each I/O operation, typically set to 128, 64, or 32.<br>
 "steps": Defines the number of simulation steps.
+Here is the example for setting file:
+L: 128 means the problem size.
+Steps: 800 means the number of problems
+output:gs.bp means the output file location
+"adios_config": "adios2.xml", the location for the adios2.xml
+```
+{
+  "L": 128,
+  "Du": 0.2,
+  "Dv": 0.1,
+  "F": 0.01,
+  "k": 0.05,
+  "dt": 2.0,
+  "plotgap": 10,
+  "steps": 800,
+  "noise": 0.01,
+  "output": "gs.bp",
+  "checkpoint": true,
+  "checkpoint_freq": 70,
+  "checkpoint_output": "ckpt.bp",
+  "restart": false,
+  "restart_input": "ckpt.bp",
+  "adios_config": "adios2.xml",
+  "adios_span": false,
+  "adios_memory_selection": false,
+  "mesh_type": "image"
+}
+```
+
+
 ```
 cd gray-scott
 mpirun -n 4 build/adios2-gray-scott simulation/settings-files.json 0
