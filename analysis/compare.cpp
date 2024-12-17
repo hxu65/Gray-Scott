@@ -59,13 +59,10 @@ int main(int argc, char *argv[])
     auto app_start_time = std::chrono::high_resolution_clock::now();
     MPI_Init(&argc, &argv);
     int rank, comm_size, wrank;
-
     MPI_Comm_rank(MPI_COMM_WORLD, &wrank);
-
     const unsigned int color = 2;
     MPI_Comm comm;
     MPI_Comm_split(MPI_COMM_WORLD, color, wrank, &comm);
-
     MPI_Comm_rank(comm, &rank);
     MPI_Comm_size(comm, &comm_size);
 
@@ -80,15 +77,12 @@ int main(int argc, char *argv[])
 
     std::string in_filename;
     std::string out_filename;
-
     bool write_inputvars = false;
     in_filename = argv[1];
     out_filename = argv[2];
-
     if (argc >= 4)
     {
         int value = std::stoi(argv[3]);
-
     }
 
     if (argc >= 5)
@@ -119,7 +113,6 @@ int main(int argc, char *argv[])
     std::vector<uint8_t> readHashU_2;
     // adios2 io object and engine init
     adios2::ADIOS ad("adios2.xml", comm);
-
     // IO objects for reading and writing
     adios2::IO reader_io = ad.DeclareIO("SimulationOutput");
     adios2::IO reader2_io = ad.DeclareIO("PDFAnalysisOutput");
@@ -149,7 +142,6 @@ int main(int argc, char *argv[])
                 reader.BeginStep(adios2::StepMode::Read, 10.0f);
         if (read_status == adios2::StepStatus::NotReady)
         {
-
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             continue;
         }
@@ -160,12 +152,10 @@ int main(int argc, char *argv[])
 
         // int stepSimOut = reader.CurrentStep();
         int stepSimOut = stepAnalysis;
-
         adios2::StepStatus read_status_2 =
                 reader_2.BeginStep(adios2::StepMode::Read, 10.0f);
         if (read_status_2 == adios2::StepStatus::NotReady)
         {
-            // std::cout << "Stream not ready yet. Waiting...\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             continue;
         }
@@ -177,7 +167,6 @@ int main(int argc, char *argv[])
         // int stepSimOut = reader.CurrentStep();
         int stepSimOut_2 = stepAnalysis;
         var_u_in = reader_io.InquireVariable<double>("U");
-
 
         // Set the selection at the first step only, assuming that
         // the variable dimensions do not change across timesteps
@@ -200,10 +189,6 @@ int main(int argc, char *argv[])
             firstStep = false;
         }
 
-//        var_u_in.SetSelection(adios2::Box<adios2::Dims>(
-//                {start1, 0, 0}, {count1, shape[1], shape[2]}));
-//        var_v_in.SetSelection(adios2::Box<adios2::Dims>(
-//                {start1, 0, 0}, {count1, shape[1], shape[2]}));
 
         auto varhash_U_1 = reader_io.InquireVariable<uint8_t>("derive/hashU");
         auto varhash_V_1 = reader_io.InquireVariable<uint8_t>("derive/hashV");
@@ -215,7 +200,6 @@ int main(int argc, char *argv[])
         reader_2.Get(varhash_V_2, readHashU_2);
         // compare the hash value
         for(int i =0; i < readHashV_1.size(); i++){
-            std::cout << static_cast<int>(readHashV_1[i]) << " value: " << static_cast<int>(readHashV_2[i]) << std::endl;
             if (static_cast<int>(readHashV_1[i]) - static_cast<int>(readHashV_2[i]) > 0.01) {
                 auto app_end_time = std::chrono::system_clock::now();
                 std::time_t end_time_t = std::chrono::system_clock::to_time_t(app_end_time);
