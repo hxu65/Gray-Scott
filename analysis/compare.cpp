@@ -189,6 +189,10 @@ int main(int argc, char *argv[])
             firstStep = false;
         }
 
+//        var_u_in.SetSelection(adios2::Box<adios2::Dims>(
+//                {start1, 0, 0}, {count1, shape[1], shape[2]}));
+//        var_v_in.SetSelection(adios2::Box<adios2::Dims>(
+//                {start1, 0, 0}, {count1, shape[1], shape[2]}));
 
         auto varhash_U_1 = reader_io.InquireVariable<uint8_t>("derive/hashU");
         auto varhash_V_1 = reader_io.InquireVariable<uint8_t>("derive/hashV");
@@ -200,6 +204,7 @@ int main(int argc, char *argv[])
         reader_2.Get(varhash_V_2, readHashU_2);
         // compare the hash value
         for(int i =0; i < readHashV_1.size(); i++){
+            std::cout << static_cast<int>(readHashV_1[i]) << " value: " << static_cast<int>(readHashV_2[i]) << std::endl;
             if (static_cast<int>(readHashV_1[i]) - static_cast<int>(readHashV_2[i]) > 0.01) {
                 auto app_end_time = std::chrono::system_clock::now();
                 std::time_t end_time_t = std::chrono::system_clock::to_time_t(app_end_time);
