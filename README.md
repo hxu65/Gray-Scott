@@ -84,9 +84,41 @@ cd gray-scott
 mpirun -n 4 build/hashing-comparison gs.bp gs.bp
 ```
 
+## coeus-recup evaluation case 1
+Please Note:  change the parameters in settings-files.json and settings-files2.json <br>
+for setting-files.json, the output file should be "output": "gs1.bp", <br>
+for setting-files2.json, the output file should be "output": "gs2.bp"  <br>
+You can also add use /hdd/gs2.bp for output file location
 
+```
+# run the gray-scott to generate a bp5 file without hashing
+mpirun -n 4 build/adios2-gray-scott settings-files.json 0
+# hashing it
+mpirun -n 4 build/adios2-hashing gs1.bp hashing1.bp
 
+# run the second gray-scott to generate a bp5 file without hashing
+mpirun -n 4 build/adios2-gray-scott settings-files2.json 0
+# hashing it
+mpirun -n 4 build/adios2-hashing gs2.bp hashing2.bp
 
+# compare them
+mpirun -n 4 build/hashing-comparison hashing1.bp hashing2.bp
+```
+
+## coeus-recup evaluation case 2
+Please Note:  change the parameters in settings-files.json and settings-files2.json <br>
+for setting-files.json, the output file should be "output": "gs1.bp", <br>
+for setting-files2.json, the output file should be "output": "gs2.bp"  <br>
+You can also add use /hdd/gs2.bp for output file location
+
+```
+# run the gray-scott with hashing
+mpirun -n 4 build/adios2-gray-scott settings-files.json 1
+mpirun -n 4 build/adios2-gray-scott settings-files2.json 1
+
+# compare the hashing value
+mpirun -n 4 build/hashing-comparison gs1.bp gs2.bp
+```
 
 
 # The original README for ADIOS2 gray-scott 
